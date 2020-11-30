@@ -5,6 +5,6 @@ namespace OccupancyTracker.ViewModels.Building
 {
     public class BuildingsViewModel
     {
-        IEnumerable<BuildingViewModel> Buildings;
+        public IEnumerable<BuildingViewModel> Buildings;
     }
 }

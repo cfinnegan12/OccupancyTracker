@@ -1,0 +1,29 @@
+﻿@model OccupancyTracker.ViewModels.Building.CSBViewModel
+
+<div id="CSB">
+    <h1>Computer Science Building Occupancy</h1>
+    <h3>Building Rough Occupancy: @Model.Occupancy</h3>
+    <hr />
+    <div id="csbSpacesTable">
+        <table class="table" id="spacesIndexTable">
+            <thead>
+                <tr>
+                    <th>Space</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var space in Model.Spaces.Spaces)
+                {
+                    string col = space.Occupied ? "indianred" : "forestgreen";
+                    string status = space.Occupied ? "Occupied" : "Unoccupied";
+                    <tr class="spaceRow">
+                        <td class="spaceName">@space.Name</td>
+                        <td class="spaceStatus" style="color: @col">@space.Occupied</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

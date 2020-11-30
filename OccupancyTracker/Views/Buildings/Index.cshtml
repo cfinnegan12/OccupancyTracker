@@ -1,0 +1,25 @@
+﻿@model OccupancyTracker.ViewModels.Building.BuildingsViewModel
+
+<div id="Buildings">
+    <h2>Buildings Occupancy</h2>
+    <div id="buildingsTable">
+        <table class="table" id="buildingsIndexTable">
+            <thead>
+                <tr>
+                    <th>Building</th>
+                    <th>Occupancy</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var building in Model.Buildings)
+                {
+                    <tr class="spaceRow">
+                        <td class="buildingName">@building.Name</td>
+                        <td class="buildingOccupancy" style="font-weight: bold">@building.Occupancy</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
