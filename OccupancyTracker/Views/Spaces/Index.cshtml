@@ -1,0 +1,27 @@
+﻿@model OccupancyTracker.ViewModels.Space.SpacesViewModel
+
+<div id="spaces">
+    <h2>Spaces Occupancy</h2>
+    <div id="spacesTable">
+        <table class="table" id="spacesIndexTable">
+            <thead>
+                <tr>
+                    <th>Room</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var space in Model.Spaces)
+                {
+                    string col = space.Occupied ? "indianred" : "forestgreen";
+                    string status = space.Occupied ? "Occupied" : "Unoccupied";
+                    <tr class="spaceRow">
+                        <td class="spaceName">@space.Name</td>
+                        <td class="spaceStatus" style="color: @col">@status</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
