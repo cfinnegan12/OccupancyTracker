@@ -1,4 +1,5 @@
-﻿using OccupancyData;
+﻿using Microsoft.EntityFrameworkCore;
+using OccupancyData;
 using OccupancyData.Models;
 using OccupancyServices.Interfaces;
 using System;
@@ -43,17 +44,6 @@ namespace OccupancyServices
         public Computer GetComputer(int id)
         {
             return _context.Computers.Where(j => j.Id == id).FirstOrDefault();
-        }
-
-        public IEnumerable<Computer> GetComputersInLab(int lab)
-        {
-            return _context.Computers.Where(j => j.Lab == lab);
-        }
-
-        public float GetLabOccupancy(int id)
-        {
-            float occrate = _context.Computers.Where(j => j.Lab == id && j.Logged_On == true).Count() / _context.Computers.Count();
-            return occrate * 100; ;
         }
 
         public IEnumerable<Computer> GetLoggedOffComputers()

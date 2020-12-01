@@ -1,0 +1,20 @@
+﻿@model OccupancyTracker.ViewModels.Lab.LabsViewModel
+
+<div id="Labs">
+    <h2>Labs Occupancy</h2>
+    <div id="labsProgress">
+
+        @foreach (var lab in Model.Labs)
+        {
+            var occfloat = lab.Lab_Occupancy;
+            var occint = (int)occfloat;
+
+            <h3>@lab.Name</h3>
+            <div class="progress">
+                <div class="progress-bar bg-info" role="progressbar" style="width: @occfloat%;" aria-valuenow="@occfloat" aria-valuemin="0" aria-valuemax="100">@occint%</div>
+            </div>
+            <hr />
+        }
+
+    </div>
+</div>

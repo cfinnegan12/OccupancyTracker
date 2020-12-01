@@ -28,7 +28,8 @@ namespace OccupancyTracker
             services.AddScoped<IBuildingService, BuildingService>();
             services.AddScoped<IComputerService, ComputerService>();
             services.AddScoped<ISpaceService, SpaceService>();
-            
+            services.AddScoped<ILabService, LabService>();
+
 
             services.AddDbContext<OccupancyDbContext>(options
                 => options.UseSqlServer(Configuration.GetConnectionString("OccupancyConnection")));

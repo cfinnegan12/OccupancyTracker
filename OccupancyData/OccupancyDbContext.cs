@@ -7,8 +7,10 @@ namespace OccupancyData
     {
         public OccupancyDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<Space> Spaces { get; set; }
-        public DbSet<Computer> Computers { get; set; }
         public DbSet<Building> Buildings { get; set; }
+        public DbSet<Space> Spaces { get; set; }
+        public DbSet<Lab> Labs { get; set; }
+        public DbSet<Computer> Computers { get; set; }
+
     }
 }

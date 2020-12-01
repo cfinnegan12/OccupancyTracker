@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OccupancyData;
 
 namespace OccupancyData.Migrations
 {
     [DbContext(typeof(OccupancyDbContext))]
-    partial class OccupancyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201130233419_Added Building to Space")]
+    partial class AddedBuildingtoSpace
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +47,7 @@ namespace OccupancyData.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("LabId")
+                    b.Property<int>("Lab")
                         .HasColumnType("int");
 
                     b.Property<bool>("Logged_On")
@@ -57,25 +59,7 @@ namespace OccupancyData.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LabId");
-
                     b.ToTable("Computers");
-                });
-
-            modelBuilder.Entity("OccupancyData.Models.Lab", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Labs");
                 });
 
             modelBuilder.Entity("OccupancyData.Models.Space", b =>
@@ -102,13 +86,6 @@ namespace OccupancyData.Migrations
                     b.ToTable("Spaces");
                 });
 
-            modelBuilder.Entity("OccupancyData.Models.Computer", b =>
-                {
-                    b.HasOne("OccupancyData.Models.Lab", null)
-                        .WithMany("Computers")
-                        .HasForeignKey("LabId");
-                });
-
             modelBuilder.Entity("OccupancyData.Models.Space", b =>
                 {
                     b.HasOne("OccupancyData.Models.Building", "Building")
@@ -116,11 +93,6 @@ namespace OccupancyData.Migrations
                         .HasForeignKey("BuildingId");
 
                     b.Navigation("Building");
-                });
-
-            modelBuilder.Entity("OccupancyData.Models.Lab", b =>
-                {
-                    b.Navigation("Computers");
                 });
 #pragma warning restore 612, 618
         }
