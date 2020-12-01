@@ -1,9 +1,10 @@
-﻿@model OccupancyTracker.ViewModels.Building.CSBViewModel
+﻿@model OccupancyTracker.ViewModels.Building.BuildingViewModel
 
-<div id="CSB">
-    <h1>Computer Science Building Occupancy</h1>
+<div id="Building">
+    <h1>@Model.Name</h1>
     <h3>Building Rough Occupancy: @Model.Occupancy</h3>
     <hr />
+    <h4>Building Spaces</h4>
     <div id="csbSpacesTable">
         <table class="table" id="spacesIndexTable">
             <thead>
@@ -19,7 +20,7 @@
                     string status = space.Occupied ? "Occupied" : "Unoccupied";
                     <tr class="spaceRow">
                         <td class="spaceName">@space.Name</td>
-                        <td class="spaceStatus" style="color: @col">@space.Occupied</td>
+                        <td class="spaceStatus" style="color: @col">@status</td>
                     </tr>
                 }
             </tbody>

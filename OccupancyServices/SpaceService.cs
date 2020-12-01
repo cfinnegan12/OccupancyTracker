@@ -1,4 +1,5 @@
-﻿using OccupancyData;
+﻿using Microsoft.EntityFrameworkCore;
+using OccupancyData;
 using OccupancyData.Models;
 using OccupancyServices.Interfaces;
 using System.Collections.Generic;
@@ -24,12 +25,22 @@ namespace OccupancyServices
 
         public IEnumerable<Space> GetAllSpaces()
         {
-            return _context.Spaces;
+            return _context.Spaces.Include(j => j.Building);
+        }
+
+        public IEnumerable<Space> GetAllSpacesInBuilding(int buildingId)
+        {
+            return _context.Spaces.Where(j => j.Building.Id == buildingId);
         }
 
         public IEnumerable<Space> GetOccupiedSpaces()
         {
             return _context.Spaces.Where(j => j.Occupied == true);
+        }
+
+        public IEnumerable<Space> GetOccupiedSpacesInBuilding(int buildingId)
+        {
+            return _context.Spaces.Where(j => j.Building.Id == buildingId && j.Occupied == true);
         }
 
         public Space GetSpace(int id)
@@ -40,6 +51,12 @@ namespace OccupancyServices
         public IEnumerable<Space> GetUnoccupiedSpaces()
         {
             return _context.Spaces.Where(j => j.Occupied == false);
+        }
+
+        public IEnumerable<Space> GetUnoccupiedSpacesInBuilding(int buildingId)
+        {
+            return _context.Spaces.Where(j => j.Building.Id == buildingId && j.Occupied == false);
+
         }
 
         public void SpaceOccupied(int id)

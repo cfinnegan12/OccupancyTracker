@@ -9,23 +9,26 @@ namespace OccupancyTracker.Controllers
     public class SpacesController : Controller
     {
 
-        private readonly ISpaceService _repo;
+        private readonly IBuildingService _buildingRepo;
+        private readonly ISpaceService _spaceRepo;
 
-        public SpacesController(ISpaceService repo)
+        public SpacesController(IBuildingService brepo, ISpaceService crepo)
         {
-            _repo = repo;
+            _buildingRepo = brepo;
+            _spaceRepo = crepo;
         }
 
 
         public IActionResult Index()
         {
-            var allSpaces = _repo.GetAllSpaces();
+            var allSpaces = _spaceRepo.GetAllSpaces();
 
             var spaceViewModels = allSpaces
                 .Select(result => new SpaceViewModel
                 {
                     Name = result.Name,
-                    Occupied = result.Occupied
+                    Occupied = result.Occupied,
+                    Building = result.Building.Building_Name
                 });
 
             var spacesViewModel = new SpacesViewModel

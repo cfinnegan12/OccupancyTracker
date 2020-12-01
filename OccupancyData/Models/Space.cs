@@ -16,6 +16,9 @@ namespace OccupancyData.Models
         [Required]
         public bool Occupied { get; set; }
 
+        //Building Space is located in
+        public Building Building { get; set; }
+
         public void Space_Occupied() { Occupied = true; }
         public void Space_Unoccupied() { Occupied = false; }
 

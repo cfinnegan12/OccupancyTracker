@@ -13,10 +13,11 @@
             <tbody>
                 @foreach (var building in Model.Buildings)
                 {
-                    <tr class="spaceRow">
-                        <td class="buildingName">@building.Name</td>
-                        <td class="buildingOccupancy" style="font-weight: bold">@building.Occupancy</td>
-                    </tr>
+                    var link = Url.Action("Details", "Buildings", new { id = building.Id });
+                        <tr class="spaceRow">
+                            <td class="buildingName"><a href=@link>@building.Name</a></td>
+                            <td class="buildingOccupancy" style="font-weight: bold">@building.Occupancy</td>
+                        </tr>
                 }
             </tbody>
 

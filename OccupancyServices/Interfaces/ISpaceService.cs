@@ -9,6 +9,9 @@ namespace OccupancyServices.Interfaces
         IEnumerable<Space> GetAllSpaces();
         IEnumerable<Space> GetOccupiedSpaces();
         IEnumerable<Space> GetUnoccupiedSpaces();
+        IEnumerable<Space> GetAllSpacesInBuilding(int buildingId);
+        IEnumerable<Space> GetOccupiedSpacesInBuilding(int buildingId);
+        IEnumerable<Space> GetUnoccupiedSpacesInBuilding(int buildingId);
         Space GetSpace(int id);
         void SpaceOccupied(int id);
         void SpaceUnoccupied(int id);
