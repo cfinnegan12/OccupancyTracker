@@ -9,10 +9,10 @@ namespace OccupancyServices.Interfaces
         IEnumerable<Computer> GetAllComputers();
         IEnumerable<Computer> GetLoggedOnComputers();
         IEnumerable<Computer> GetLoggedOffComputers();
-        //IEnumerable<Computer> GetComputersInLab(int lab);
         Computer GetComputer(int id);
-        //float GetLabOccupancy(int id);
+        Computer GetComputerByName(string name);
         void ComputerLogIn(int id);
         void ComputerLogOff(int id);
+        void AddComputer(Computer computer);
     }
 }

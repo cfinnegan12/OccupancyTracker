@@ -24,15 +24,24 @@ namespace OccupancyServices
          * Computer Service Implementation
          */
 
+        public void AddComputer(Computer computer)
+        {
+            _context.Computers.Add(computer);
+            _context.SaveChanges();
+        }
+
+
         public void ComputerLogIn(int id)
         {
-            _context.Computers.Where(j => j.Id == id).FirstOrDefault().Log_On();
+            var computer = _context.Computers.Where(j => j.Id == id).FirstOrDefault();
+            computer.Log_On();
             _context.SaveChanges();
         }
 
         public void ComputerLogOff(int id)
         {
-            _context.Computers.Where(j => j.Id == id).FirstOrDefault().Log_Off();
+            var computer = _context.Computers.Where(j => j.Id == id).FirstOrDefault();
+            computer.Log_Off();
             _context.SaveChanges();
         }
 
@@ -44,6 +53,11 @@ namespace OccupancyServices
         public Computer GetComputer(int id)
         {
             return _context.Computers.Where(j => j.Id == id).FirstOrDefault();
+        }
+
+        public Computer GetComputerByName(string name)
+        {
+            return _context.Computers.Where(j => j.Machine_Name == name).FirstOrDefault();
         }
 
         public IEnumerable<Computer> GetLoggedOffComputers()

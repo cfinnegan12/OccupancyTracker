@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OccupancyData.Models;
 using OccupancyServices.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+
 
 namespace OccupancyTracker.Controllers
 {

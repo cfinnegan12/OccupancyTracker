@@ -2,10 +2,8 @@
 using OccupancyData.Models;
 using OccupancyServices.Interfaces;
 using OccupancyTracker.DataTransferObjects;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 
 namespace OccupancyTracker.Controllers
