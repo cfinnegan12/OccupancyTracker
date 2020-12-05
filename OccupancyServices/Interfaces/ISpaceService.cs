@@ -15,5 +15,7 @@ namespace OccupancyServices.Interfaces
         Space GetSpace(int id);
         void SpaceOccupied(int id);
         void SpaceUnoccupied(int id);
+        void AddSpace(Space space);
+        void SetSpaceBuilding(int id, Building building);
     }
 }

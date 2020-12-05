@@ -18,10 +18,16 @@ namespace OccupancyServices
             _context = context;
         }
 
-
         /*
          * Space Service Implementation
          */
+
+        public void AddSpace(Space space)
+        {
+            _context.Spaces.Add(space);
+            _context.SaveChanges();
+        }
+
 
         public IEnumerable<Space> GetAllSpaces()
         {
@@ -30,33 +36,39 @@ namespace OccupancyServices
 
         public IEnumerable<Space> GetAllSpacesInBuilding(int buildingId)
         {
-            return _context.Spaces.Where(j => j.Building.Id == buildingId);
+            return _context.Spaces.Where(j => j.Building.Id == buildingId).Include(j => j.Building);
         }
 
         public IEnumerable<Space> GetOccupiedSpaces()
         {
-            return _context.Spaces.Where(j => j.Occupied == true);
+            return _context.Spaces.Where(j => j.Occupied == true).Include(j => j.Building);
         }
 
         public IEnumerable<Space> GetOccupiedSpacesInBuilding(int buildingId)
         {
-            return _context.Spaces.Where(j => j.Building.Id == buildingId && j.Occupied == true);
+            return _context.Spaces.Where(j => j.Building.Id == buildingId && j.Occupied == true).Include(j => j.Building);
         }
 
         public Space GetSpace(int id)
         {
-            return _context.Spaces.Where(j => j.Id == id).FirstOrDefault();
+            return _context.Spaces.Where(j => j.Id == id).Include(j => j.Building).FirstOrDefault();
         }
 
         public IEnumerable<Space> GetUnoccupiedSpaces()
         {
-            return _context.Spaces.Where(j => j.Occupied == false);
+            return _context.Spaces.Where(j => j.Occupied == false).Include(j => j.Building);
         }
 
         public IEnumerable<Space> GetUnoccupiedSpacesInBuilding(int buildingId)
         {
-            return _context.Spaces.Where(j => j.Building.Id == buildingId && j.Occupied == false);
+            return _context.Spaces.Where(j => j.Building.Id == buildingId && j.Occupied == false).Include(j => j.Building);
 
+        }
+
+        public void SetSpaceBuilding(int id, Building building)
+        {
+            _context.Spaces.FirstOrDefault(j => j.Id == id).Building = building;
+            _context.SaveChanges();
         }
 
         public void SpaceOccupied(int id)

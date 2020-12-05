@@ -28,8 +28,8 @@ namespace OccupancyTracker.Controllers
                 {
                     Name = result.Name,
                     Occupied = result.Occupied,
-                    Building = result.Building.Building_Name
-                });
+                    Building = (result.Building != null) ? result.Building.Building_Name : " "
+                }); ;
 
             var spacesViewModel = new SpacesViewModel
             {
