@@ -12,5 +12,9 @@ namespace OccupancyServices.Interfaces
         int GetBuildingOccupancy(int Id);
         void BuildingEntry(int Id);
         void BuildingExit(int Id);
+        bool ResetBuildingOccupancy(int Id);
+        bool SetBuildingOccupancy(int Id, int occupancy);
+        void AddBuilding(Building building);
+
     }
 }

@@ -17,20 +17,28 @@ namespace OccupancyServices
             _context = context;
         }
 
-
         /*
          * Building Service Implementation
          */
 
+        public void AddBuilding(Building building)
+        {
+            _context.Buildings.Add(building);
+            _context.SaveChanges();
+        }
+
+
         public void BuildingEntry(int Id)
         {
-            _context.Buildings.Where(j => j.Id == Id).FirstOrDefault().Entrance();
+            var building = _context.Buildings.Where(j => j.Id == Id).FirstOrDefault();
+            building.Building_Occupancy += 1;
             _context.SaveChanges();
         }
 
         public void BuildingExit(int Id)
         {
-            _context.Buildings.Where(j => j.Id == Id).FirstOrDefault().Exit();
+            var building = _context.Buildings.Where(j => j.Id == Id).FirstOrDefault();
+            building.Building_Occupancy -= 1; 
             _context.SaveChanges();
         }
 
@@ -52,6 +60,22 @@ namespace OccupancyServices
         public int GetBuildingOccupancy(int Id)
         {
             return _context.Buildings.Where(j => j.Id == Id).FirstOrDefault().Building_Occupancy;
+        }
+
+        public bool ResetBuildingOccupancy(int Id)
+        {
+            var building = _context.Buildings.FirstOrDefault(j => j.Id == Id);
+            building.Building_Occupancy = 0;
+            _context.SaveChanges();
+            return building != null;
+        }
+
+        public bool SetBuildingOccupancy(int Id, int occupancy)
+        {
+            var building = _context.Buildings.FirstOrDefault(j => j.Id == Id);
+            building.Building_Occupancy = occupancy;
+            _context.SaveChanges();
+            return building != null;
         }
     }
 }
