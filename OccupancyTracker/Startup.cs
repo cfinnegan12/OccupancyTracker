@@ -26,7 +26,7 @@ namespace OccupancyTracker
             var port = Configuration["DBPort"] ?? "1433";
             var user = Configuration["DBUser"];
             var password = Configuration["DBPassword"];
-            var database = Configuration["DBName"];
+            var database = Configuration["DBName"] ?? "OccupancyDB";
 
             services.AddControllersWithViews();
 
@@ -54,7 +54,9 @@ namespace OccupancyTracker
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             dbContext.Database.Migrate();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
