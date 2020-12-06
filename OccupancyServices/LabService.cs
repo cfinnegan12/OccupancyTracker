@@ -2,7 +2,6 @@
 using OccupancyData;
 using OccupancyData.Models;
 using OccupancyServices.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,6 +18,18 @@ namespace OccupancyServices
             _context = context;
         }
 
+        public void AddComputerToLab(int labId, Computer computer)
+        {
+            Lab lab = _context.Labs.FirstOrDefault( j => j.Id == labId);
+            lab.Computers.Add(computer);
+            _context.SaveChanges();
+        }
+
+        public void AddLab(Lab lab)
+        {
+            _context.Labs.Add(lab);
+            _context.SaveChanges();
+        }
 
         public IEnumerable<Lab> GetAllLabs()
         {
@@ -34,5 +45,6 @@ namespace OccupancyServices
         {
             return _context.Labs.Include(lab => lab.Computers).FirstOrDefault(lab => lab.Id == id).Computers;
         }
+
     }
 }

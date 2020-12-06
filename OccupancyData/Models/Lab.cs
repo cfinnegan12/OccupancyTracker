@@ -15,7 +15,7 @@ namespace OccupancyData.Models
 
         //Computers in the lab
         [Required]
-        public IEnumerable<Computer> Computers { get; set; }
+        public List<Computer> Computers { get; set; }
 
         public float GetOccupancy()
         {
