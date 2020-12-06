@@ -22,11 +22,11 @@ namespace OccupancyTracker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var server = Configuration["DBServer"] ?? "192.168.0.39";
+            var server = Configuration["DBServer"];
             var port = Configuration["DBPort"] ?? "1433";
-            var user = Configuration["DBUser"] ?? "OccupancyAdmin";
-            var password = Configuration["DBPassword"] ?? "TestPassword1234!";
-            var database = Configuration["DBName"] ?? "OccupancyDB";
+            var user = Configuration["DBUser"];
+            var password = Configuration["DBPassword"];
+            var database = Configuration["DBName"];
 
             services.AddControllersWithViews();
 
